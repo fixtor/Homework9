@@ -4,5 +4,5 @@ from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, Messa
 
 def log_1(update, context):
 	file = open('db.csv', 'a', encoding='utf-8')
-	file.write(f'{update.effective_user.first_name}, {update.effective_user.id}, {update.message.text}')
+	file.write(f'{update.effective_user.first_name}, {update.effective_user.id}, {update.message.text}\n')
 	file.close()
