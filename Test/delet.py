@@ -4,8 +4,8 @@ class Email:
     
     @classmethod
     def __validate_email(cls, email):
-        if type(email) is str and "@" in email and "." in email: return True
-        else: return False       #Возвращается Тру или Фолс, для проверки if в __Init__!!!
+        return type(email) is str and "@" in email and "." in email #Возвращается Тру или Фолс, для проверки if в __Init__!!!
+
 
 
     def __init__(self, email):
@@ -28,7 +28,7 @@ class Email:
         return str(self.__temp[1]).split('.')[1]
         
 
-em = Email('igor@yandex.ru')
+em = Email(1)
 print(em.get_domain(), em.get_name())
 
 print(em.__dict__)
