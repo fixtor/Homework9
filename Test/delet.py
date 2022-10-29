@@ -1,37 +1,37 @@
-class Email:
+class Email_Components_Name_Domain_Suffix:
     
     "Класс для разделения емейла на Имя, Домен и Суффикс"   
     
     @classmethod
     def __validate_email(cls, email):
-        return type(email) is str and "@" in email and "." in email #Возвращается Тру или Фолс, для проверки if в __Init__!!!
-
-
+        return type(email) is str and "@" in email and "." in email
+        # Возвращается Тру или Фолс, для проверки if в __Init__!!!
 
     def __init__(self, email):
-        if self.__validate_email(email):
-            self.__email = email
-            self.__temp = self.__email.split('@')
-        else:
-            self.__email = 'None@None.None' #Значение для Исключения
-            self.__temp = self.__email.split('@')
+        if not self.__validate_email(email):
+            raise ValueError('Unknown address, make sure is correct')  # Значение для Исключения
+        self.__email = email.split('@')
+        self.name = self.__get_name()
+        self.domain = self.__get_domain()
+        self.suffix = self.__get_suffix()
 
-    def get_name(self):
-        return str(self.__temp[0])
+
+    def __get_name(self):
+        return str(self.__email[0])
                 
     
-    def get_domain(self):
-        return str(self.__temp[1]).split('.')[0]
+    def __get_domain(self):
+        return str(self.__email[1]).split('.')[0]
         
     
-    def get_suffix(self):
-        return str(self.__temp[1]).split('.')[1]
+    def __get_suffix(self):
+        return str(self.__email[1]).split('.')[1]
         
 
-em = Email(1)
-print(em.get_domain(), em.get_name())
+em = Email_Components_Name_Domain_Suffix('1@ED.R')
+print(em.name, em.domain, em.suffix)
 
-print(em.__dict__)
+print(dir(em))
 
 
 # def test_validate(a=1):
